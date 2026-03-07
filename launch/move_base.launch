@@ -1,5 +1,5 @@
 <launch>
-  <arg name="model" default="$(env TURTLEBOT3_MODEL)"/>
+  <!-- <arg name="model" default="$(env TURTLEBOT3_MODEL)"/> -->
   <arg name="robot_namespace" default=""/>
   <arg name="laser_topic" default="scan" />
   <arg name="odom_topic" default="odom" />
@@ -13,14 +13,15 @@
       <!-- DWA is better!!!!! -->
       <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
 
-      <!-- 加载参数文件 -->
-      <rosparam file="$(find robot_vs)/config/turtlebot_param/costmap_common_params_$(arg model).yaml" command="load" ns="global_costmap" />
+      <!-- 加载xuni参数文件 -->
+      <!-- <rosparam file="$(find robot_vs)/config/turtlebot_param/costmap_common_params_$(arg model).yaml" command="load" ns="global_costmap" />
       <rosparam file="$(find robot_vs)/config/turtlebot_param/costmap_common_params_$(arg model).yaml" command="load" ns="local_costmap" />
       <rosparam file="$(find robot_vs)/config/turtlebot_param/local_costmap_params.yaml" command="load" />
       <rosparam file="$(find robot_vs)/config/turtlebot_param/global_costmap_params.yaml" command="load" />
       <rosparam file="$(find robot_vs)/config/turtlebot_param/move_base_params.yaml" command="load" />
-      <rosparam file="$(find robot_vs)/config/turtlebot_param/dwa_local_planner_params_$(arg model).yaml" command="load" />
+      <rosparam file="$(find robot_vs)/config/turtlebot_param/dwa_local_planner_params_$(arg model).yaml" command="load" /> -->
 
+      <!--real-->
       <rosparam file="$(find robot_vs)/config/mowen_param/costmap_common_params.yaml" command="load" ns="global_costmap" />
       <rosparam file="$(find robot_vs)/config/mowen_param/costmap_common_params.yaml" command="load" ns="local_costmap" />
       <rosparam file="$(find robot_vs)/config/mowen_param/local_costmap_params.yaml" command="load" />
