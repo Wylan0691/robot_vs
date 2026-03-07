@@ -2,6 +2,7 @@
   <!-- ########## 核心配置（先改这里！）########## -->
   <arg name="robot_namespace" default="robot_blue" doc="蓝车命名空间"/>
   <arg name="urdf_path" default="$(find robot_vs)/config/mowen_param/mowen.urdf.xacro" doc="蓝车的URDF模型"/>
+  <arg name="type" default="normal" doc="type [normal, modbus, hmodbus, can, hcan]"/>
   <arg name="initial_pose_x" default="5.0" doc="【必须适配】蓝车在场地里的实际初始X坐标"/>
   <arg name="initial_pose_y" default="0.0" doc="【必须适配】蓝车在场地里的实际初始Y坐标"/>
   <arg name="initial_pose_a" default="3.14" doc="【必须适配】蓝车在场地里的实际初始朝向（弧度）"/>
@@ -24,19 +25,18 @@
     <!-- <include file="$(find mowen)/launch/display.launch" /> -->
 <!-- 加载你真机的URDF模型 -->
 
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg urdf_path)" />
-    <!-- 发布机器人TF树（tf_prefix和命名空间一致，避免和蓝车冲突） -->
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
-      <param name="publish_frequency" type="double" value="20.0"/>
-      <param name="tf_prefix" value="$(arg robot_namespace)"/>
-    </node>
-    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" output="screen"/>
+    <include file="$(find mowen)/launch/display.launch" />
     
-    <include  file="$(find wit_ros_imu)/launch/wit_imu.launch" />
-    
+    <!-- <include  file="$(find wit_ros_imu)/launch/wit_imu.launch" > -->
+    <!-- imu 对应 python 文件 -->
+    <node pkg="wit_ros_imu" type="wit_$(arg type)_ros.py" name="imu" output="screen">
+        <param name="port"               type = "str"    value="/dev/imu"/>
+        <param name="baud"               type = "int"    value="9600"/>
 
-    <!--?-->
-    <node pkg="car_bringup" name="pubv" type="pubv.py"  />
+        <remap from="/wit/cali" to="wit/cali"/>
+    </node>
+    
+    <node pkg="car_bringup" name="pubv" type="pubv.py"  >
       <remap from="/vel_raw" to="vel_raw"/>
     </node>
     
@@ -62,9 +62,11 @@
     </node>
   </group>
 
+  
   <!-- ============================================== -->
   <!-- 3. AMCL定位节点 -->
   <!-- ============================================== -->
+  
   <include file="$(find robot_vs)/launch/amcl.launch">
       <arg name="robot_namespace" value="$(arg robot_namespace)" />
       <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
@@ -72,11 +74,13 @@
       <arg name="initial_pose_a" value="$(arg initial_pose_a)"/>
   </include>
 
+
   <!-- ============================================== -->
   <!-- 4. move_base导航节点 -->
   <!-- ============================================== -->
+  
   <include file="$(find robot_vs)/launch/move_base.launch">
       <arg name="robot_namespace" value="$(arg robot_namespace)" />
   </include>
-
+  
 </launch>

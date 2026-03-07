@@ -1,0 +1,32 @@
+<launch>
+  <arg
+    name="model" />
+  <param
+    name="robot_description"
+    textfile="$(find robot_vs)/mowen_param/mowen.urdf" />
+  <!--
+  <node
+    name="joint_state_publisher_gui"
+    pkg="joint_state_publisher_gui"
+    type="joint_state_publisher_gui" />
+  -->
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher" >
+    <param name="tf_prefix" value="$(arg robot_namespace)"/>
+  </node>
+
+  <node 
+  pkg="joint_state_publisher" 
+  type="joint_state_publisher" 
+  name="joint_state_publisher" 
+  output="screen"/>
+  <!--
+  <node
+    name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(find mowen)/urdf.rviz" />
+  -->
+</launch>
