@@ -4,6 +4,7 @@ import rospy
 import cv2
 from cv_bridge import CvBridge, CvBridgeError
 from geometry_msgs.msg import PoseWithCovarianceStamped
+from nav_msgs.msg import Odometry
 from sensor_msgs.msg import Image
 import tf
 
@@ -15,12 +16,20 @@ class Perception:
         # 内部状态
         self.current_pose = None
         self.current_image = None
+        self.current_odom = None
         
         # 订阅AMCL全局位置
         self.pose_sub = rospy.Subscriber(
             "/{}/amcl_pose".format(self.ns),
             PoseWithCovarianceStamped,
             self.pose_callback
+        )
+
+        # 订阅里程计
+        self.odom_sub = rospy.Subscriber(
+            "/{}/odom".format(self.ns),
+            Odometry,
+            self.odom_callback
         )
         
         # 订阅相机图像(仿真中由Gazebo自动发布）
@@ -41,11 +50,5 @@ class Perception:
         except CvBridgeError as e:
             rospy.logerr("图像转换失败: {}".format(e))
 
-    def get_current_pose(self):
-        """获取当前全局位置(x,y & Yaw地图坐标系)"""
-        return self.current_pose
-        
-
-    def get_current_image(self):
-        """获取当前相机图像(OpenCV格式)"""
-        return self.current_image
+    def odom_callback(self, msg):
+        self.current_odom = msg

@@ -22,7 +22,6 @@ Panels:
         - /Global Map [Blue2]1/Planner1
         - /Local Map [Blue2]1/Costmap1
         - /Local Map [Blue2]1/Planner1
-        - /Amcl Particles [Blue]1
         - /Goal [Red]1
         - /Goal [Red2]1
         - /Goal [Blue]1
@@ -749,7 +748,7 @@ Visualization Manager:
       Axes Radius: 0.009999999776482582
       Class: rviz/PoseArray
       Color: 0; 192; 0
-      Enabled: false
+      Enabled: true
       Head Length: 0.07000000029802322
       Head Radius: 0.029999999329447746
       Name: Amcl Particles [Red]
@@ -758,7 +757,7 @@ Visualization Manager:
       Shape: Arrow (Flat)
       Topic: /robot_red/particlecloud
       Unreliable: false
-      Value: false
+      Value: true
     - Alpha: 1
       Arrow Length: 0.05000000074505806
       Axes Length: 0.30000001192092896
@@ -781,7 +780,7 @@ Visualization Manager:
       Axes Radius: 0.009999999776482582
       Class: rviz/PoseArray
       Color: 255; 0; 0
-      Enabled: true
+      Enabled: false
       Head Length: 0.07000000029802322
       Head Radius: 0.029999999329447746
       Name: Amcl Particles [Blue]
@@ -790,7 +789,7 @@ Visualization Manager:
       Shape: Arrow (Flat)
       Topic: /robot_blue/particlecloud
       Unreliable: false
-      Value: true
+      Value: false
     - Alpha: 1
       Arrow Length: 0.05000000074505806
       Axes Length: 0.30000001192092896
@@ -911,7 +910,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -0.030796648934483528
+      Angle: -0.0007966486737132072
       Class: rviz/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -921,11 +920,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 186.29855346679688
+      Scale: 175.1667022705078
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
-      X: 0.8681197762489319
-      Y: -0.24018269777297974
+      X: 0.7749282717704773
+      Y: -0.3017551004886627
     Saved: ~
 Window Geometry:
   Displays:
