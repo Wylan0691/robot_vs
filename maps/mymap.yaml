@@ -1,4 +1,4 @@
-image: /home/mowen/robo2026_ws/src/robot_vs/maps/mymap.pgm
+image: mymap.pgm
 resolution: 0.050000
 origin: [-17.400000, -3.000000, 0.000000]
 negate: 0
