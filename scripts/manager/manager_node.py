@@ -107,7 +107,7 @@ class TeamManager(object):
 				"action": "STOP",
 				"target": {"x": 0.0, "y": 0.0},
 				"mode": 0,
-				"reason": "fallback_on_exception",
+				"reason": "fallback_on_exception in manager.py",
 				"timeout": 2.0,
 			}
 		return fallback
@@ -142,7 +142,7 @@ def main():
 	except Exception as exc:
 		rospy.logwarn("TeamManager param/init error: %s", exc)
 		# Keep node alive with conservative defaults when params are invalid.
-		manager = TeamManager(team_color="red", my_cars=[], loop_hz=0.2, state_timeout_s=2.0)
+		manager = TeamManager(team_color="red", my_cars=[], loop_hz=1, state_timeout_s=2.0)
 
 	manager.run()
 

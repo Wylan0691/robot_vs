@@ -57,7 +57,7 @@ class LLMClient(object):
             for idx, robot_id in enumerate(robot_ids):
                 state_entry = friendly.get(robot_id, {})
                 if self._is_robot_data_missing(state_entry):
-                    tasks[robot_id] = self._stop_task("missing/stale robot state")
+                    tasks[robot_id] = self._stop_task("missing/stale robot state in visible enemy")
                     continue
 
                 if idx % 2 == 0:
@@ -82,7 +82,7 @@ class LLMClient(object):
         for idx, robot_id in enumerate(robot_ids):
             state_entry = friendly.get(robot_id, {})
             if self._is_robot_data_missing(state_entry):
-                tasks[robot_id] = self._stop_task("missing/stale robot state")
+                tasks[robot_id] = self._stop_task("missing/stale robot state in no visible enemy")
                 continue
 
             point = self._normalize_patrol_point(self._patrol_points[idx % len(self._patrol_points)])

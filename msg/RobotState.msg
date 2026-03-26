@@ -14,5 +14,5 @@ bool in_combat
 geometry_msgs/Pose pose
 geometry_msgs/Twist twist
 
-# Optional discrete behavior state (0 idle, 1 patrol, 2 attack, 3 retreat)
+# Optional behavior state (0 idle, 1 patrol, 2 attack, 3 retreat)
 uint8 mode

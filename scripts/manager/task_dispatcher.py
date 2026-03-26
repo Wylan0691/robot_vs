@@ -40,6 +40,7 @@ class TaskDispatcher(object):
 
 		# Compatibility with legacy list format:
 		# [{"car":"robot_x","type":"idle","reason":"..."}, ...]
+		rospy.logwarn("tasks is a list, using legacy format normalization. Consider updating LLM output to dict format.")
 		if isinstance(tasks, list):
 			normalized = {}
 			for item in tasks:
