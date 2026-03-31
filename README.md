@@ -68,6 +68,7 @@ roslaunch robot_vs cars.launch
 |------|------|
 | 仿真环境（Gazebo + Rviz） | ✅ 已完成 |
 | 红蓝阵营 Manager 框架 | ✅ 已完成 |
+| 真机局域网下通信测试 | ✅ 已完成 |
 | Car Agent + Skill 系统 | ✅ 已完成 |
 | 裁判系统对接 | 🚧 进行中 |
 | 现实环境部署 | 🚧 进行中 |
