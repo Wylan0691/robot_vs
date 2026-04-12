@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 import json
 import os
 
@@ -24,7 +21,8 @@ def build_prompt(battle_state, robot_ids):
             "只输出 JSON 对象",
             "必须覆盖 robot_ids 里每一台车",
             "target 必须包含 x/y 数值",
-            "timeout 必须 > 0,并且适当大一些以保证技能执行",
+            "timeout 必须 > 5",
+            "地图x范围[-3.8, 3.8], y范围[-1.8, 1.8]",
         ],
     }
     print("[kimi_manager] built prompt:")
