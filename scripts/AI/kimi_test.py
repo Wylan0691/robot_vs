@@ -27,6 +27,8 @@ def build_prompt(battle_state, robot_ids):
             "timeout 必须 > 0,并且适当大一些以保证技能执行",
         ],
     }
+    print("[kimi_manager] built prompt:")
+    print(json.dumps(payload, ensure_ascii=False))
     return json.dumps(payload, ensure_ascii=False)
 
 
@@ -84,7 +86,8 @@ def main():
     prompt = build_prompt(battle_state, robot_ids)
 
     response = client.chat.completions.create(
-        model="kimi-k2.5",
+        # model="kimi-k2.5",
+        model="kimi-k2-turbo-preview",
         messages=[
             {
                 "role": "system",

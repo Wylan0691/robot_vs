@@ -1,5 +1,4 @@
-#!/home/xqrion/miniconda3/envs/robotvs/bin/python
-# -*- coding: utf-8 -*-
+### 在miniconda的robotvs下运行
 
 import json
 import os
@@ -48,8 +47,8 @@ class KimiManager(object):
             timeout=self.timeout_s,
         )
         raw_text = str(response.choices[0].message.content or "").strip()
-        print("[kimi_manager] raw LLM response:")
-        print(raw_text)
+        # print("[kimi_manager] raw LLM response:")
+        # print(raw_text)
         return raw_text
 
     def build_prompt(self, battle_state, robot_ids):
@@ -69,7 +68,8 @@ class KimiManager(object):
                 "只输出 JSON 对象",
                 "必须覆盖 robot_ids 里每一台车",
                 "target 必须包含 x/y 数值",
-                "timeout 必须 > 0",
+                "timeout 必须 > 5",
+                "地图x范围[-3.8, 3.8], y范围[-1.8, 1.8]",
             ],
         }
         return json.dumps(payload, ensure_ascii=False)
@@ -78,8 +78,8 @@ class KimiManager(object):
         prompt = self.build_prompt(battle_state=battle_state, robot_ids=robot_ids)
         raw_text = self.ask_raw(prompt)
         parsed = self.parse_tasks(raw_text)
-        # print("[kimi_manager] parsed LLM tasks:")
-        # print(json.dumps(parsed, ensure_ascii=False))
+        print("[kimi_manager] parsed LLM tasks:")
+        print(json.dumps(parsed, ensure_ascii=False))
         return parsed
 
     def parse_tasks(self, text):
